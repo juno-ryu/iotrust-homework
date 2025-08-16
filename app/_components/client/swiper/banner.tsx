@@ -1,7 +1,7 @@
 "use client";
-import React, { FC } from "react";
+import React from "react";
 
-import { SwiperSlide, Swiper as SwiperWrapper } from "swiper/react";
+import { SwiperSlide, Swiper } from "swiper/react";
 import { SwiperOptions } from "swiper/types";
 
 import Image from "next/image";
@@ -18,12 +18,12 @@ interface SlideItem {
   content: string;
 }
 
-interface SwiperProps {
+interface BannerProps {
   slides: SlideItem[];
   options?: SwiperOptions;
 }
 
-export default function Swiper(props: SwiperProps) {
+export default function Banner(props: BannerProps) {
   const { slides, options } = props;
 
   const defaultOptions: SwiperOptions = {
@@ -41,7 +41,7 @@ export default function Swiper(props: SwiperProps) {
     );
   }
   return (
-    <SwiperWrapper {...defaultOptions}>
+    <Swiper {...defaultOptions}>
       {slides.map((slide) => (
         <SwiperSlide key={slide.id}>
           <div className="relative w-full h-[160px]">
@@ -57,12 +57,12 @@ export default function Swiper(props: SwiperProps) {
               className="absolute top-0 left-0 text-white p-3 text-lg"
               dangerouslySetInnerHTML={{ __html: slide.content }}
             />
-            <button className="absolute bottom-3 left-3 bg-white text-black font-bold py-2 px-4 rounded">
+            <button className="absolute bottom-3 left-3 bg-white text-black font-bold py-2 px-4 rounded-lg shadow-md">
               구매하기
             </button>
           </div>
         </SwiperSlide>
       ))}
-    </SwiperWrapper>
+    </Swiper>
   );
 }
