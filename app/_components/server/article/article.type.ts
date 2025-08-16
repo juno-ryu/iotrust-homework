@@ -26,7 +26,7 @@ export interface ListItem {
   visibleCondition: Nullable<VisibleCondition>;
 }
 export interface ArticleProps {
-  list: ListItem[];
+  lists: ListItem[];
   title: string;
   isFavorite?: boolean;
 }

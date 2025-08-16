@@ -1,24 +1,41 @@
-import Banner from "@/app/_components/client/swiper/banner";
+import Banner from "@/app/_components/client/banner/banner";
 import Article from "@/app/_components/server/article/article";
 import { ListItem } from "@/app/_components/server/article/article.type";
+import { Environment, Language, Platform } from "@/shared/types/common";
+import { getPletformServer } from "@/shared/utils/get-pletform.server";
+import { getTranslation } from "@/shared/utils/i18next/i18next.server";
 
-export default function Home() {
-  const slides = [
+interface HomeProps {
+  params: Promise<{ lang: Language }>;
+}
+
+export default async function Home(props: HomeProps) {
+  const { params } = props;
+  const { lang } = await params;
+  const pletform = await getPletformServer();
+
+  const banners = [
     {
       id: 1,
-      img: "https://raw.githubusercontent.com/KyungeunKim/iotrust-frontend-homework/main/images/banner_dcent.png",
+      imageUrl:
+        "https://raw.githubusercontent.com/KyungeunKim/iotrust-frontend-homework/main/images/banner_dcent.png",
       title: "첫 번째 슬라이드",
       content: `<span class="font-bold">첫 번째 슬라이드의 내용입니다.</span><br/>여기에 추가적인 설명을 넣을 수 있습니다.`,
+      ctaText: "확인하기",
+      ctaUrl: "https://buy.moonpay.com",
     },
     {
       id: 2,
-      img: "https://raw.githubusercontent.com/KyungeunKim/iotrust-frontend-homework/main/images/banner_blog.png",
+      imageUrl:
+        "https://raw.githubusercontent.com/KyungeunKim/iotrust-frontend-homework/main/images/banner_blog.png",
       title: "두 번째 슬라이드",
       content: `<span class="font-bold">두 번째 슬라이드의 내용입니다.</span></br>여기에 추가적인 설명을 넣을 수 있습니다.`,
+      ctaText: "구매하기",
+      ctaUrl: "https://buy.moonpay.com",
     },
   ];
 
-  const list: ListItem[] = [
+  const lists = [
     {
       id: "moonpay",
       name: "MoonPay",
@@ -29,8 +46,8 @@ export default function Home() {
       },
       networks: [],
       visibleCondition: {
-        langs: ["en"],
-        platforms: ["ios"],
+        langs: [Language.En],
+        platforms: [Platform.IOS],
       },
     },
     {
@@ -56,7 +73,7 @@ export default function Home() {
       },
       networks: ["Astar"],
       visibleCondition: {
-        environments: ["dev", "stage"],
+        environments: [Environment.Dev, Environment.Stage],
       },
     },
     {
@@ -129,19 +146,21 @@ export default function Home() {
       },
       networks: ["Kaia"],
       visibleCondition: {
-        langs: ["ko"],
+        langs: [Language.Ko],
       },
     },
   ];
 
+  const { t } = await getTranslation(lang, "common");
+
   return (
     <main className="font-sans flex flex-col gap-[32px] items-center min-h-screen py-10">
       <div className="w-full max-w-lg min-w-[320px] px-4">
-        <Banner slides={slides} />
+        <Banner lang={lang} banners={banners} />
       </div>
       <div className="w-full max-w-lg min-w-[320px] flex flex-col gap-[32px] px-4">
-        <Article list={list} title="즐겨찾기" isFavorite />
-        <Article list={list} title="목록" />
+        <Article lists={lists} title={t("dapp_favorite_title")} isFavorite />
+        <Article lists={lists} title={t("dapp_list_title")} />
       </div>
     </main>
   );

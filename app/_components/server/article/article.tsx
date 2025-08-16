@@ -5,15 +5,15 @@ import { headers } from "next/headers";
 import { getPletformServer } from "@/shared/utils/get-pletform.server";
 
 export default async function Article(props: ArticleProps) {
-  const { list, title, isFavorite } = props;
+  const { lists, title, isFavorite } = props;
   const a = await getPletformServer();
   console.log(a);
   return (
     <article className="w-full">
       <h3 className="text-xl font-bold ">{title}</h3>
       <div className="w-full min-h-[1px] bg-gray-600 my-2" />
-      {list.map((item, i) => {
-        const isLast = i === list.length - 1;
+      {lists.map((item, i) => {
+        const isLast = i === lists.length - 1;
 
         return (
           <Fragment key={`favorite_${item.id}`}>
