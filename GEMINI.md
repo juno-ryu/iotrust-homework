@@ -18,10 +18,8 @@
 4.  `zustand`: 가벼운 전역 상태 관리
 5.  `react-use`: 자주 필요한 React 훅
 6.  `es-toolkit`: 강력한 유틸리티 함수
-7.  `Icons`: `core/design-systems/components/design-icon`의 아이콘을 우선적으로 사용하세요. 적합한 아이콘이 없으면 `lucide-react`를 사용하세요.
-8.  `yup`: 스키마 유효성 검사 및 데이터 무결성
-9.  `UI Components`: `core/design-systems`의 컴포넌트를 우선적으로 사용하세요. 적합한 컴포넌트가 없으면 `@mui/material`를 사용하세요.
-10. `react-hook-form`: 폼 유효성 검사 및 상태 관리
+7.  `yup`: 스키마 유효성 검사 및 데이터 무결성
+8.  `react-hook-form`: 폼 유효성 검사 및 상태 관리
 
 ## 해결 과정:
 

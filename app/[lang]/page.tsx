@@ -159,8 +159,13 @@ export default async function Home(props: HomeProps) {
         <Banner lang={lang} banners={banners} />
       </div>
       <div className="w-full max-w-lg min-w-[320px] flex flex-col gap-[32px] px-4">
-        <Article lists={lists} title={t("dapp_favorite_title")} isFavorite />
-        <Article lists={lists} title={t("dapp_list_title")} />
+        <Article
+          lang={lang}
+          lists={lists}
+          title={t("dapp_favorite_title")}
+          isFavorite
+        />
+        <Article lang={lang} lists={lists} title={t("dapp_list_title")} />
       </div>
     </main>
   );
