@@ -1,5 +1,6 @@
 "use client";
 
+import { deleteFavorite } from "@/app/[lang]/actions";
 import Portal from "@/app/_components/client/portal/portal";
 import { Language } from "@/shared/types/common";
 import { useTranslation } from "@/shared/utils/i18next/i18next.client";
@@ -26,6 +27,17 @@ export default function FavoriteDeleteTrigger(
     e?.stopPropagation?.();
     setOpen(false);
   }, []);
+
+  // const onDeleteFavorite = async () => {
+  //   try {
+  //     await deleteFavorite(id);
+  //     // 삭제 후 UI 갱신 로직 (예: router.refresh())
+  //   } catch (error) {
+  //     console.error("Error deleting favorite:", error);
+  //   } finally {
+  //     closeModal();
+  //   }
+  // };
 
   return (
     <div className="flex items-center justify-center z-50" onClick={openModal}>
@@ -61,6 +73,7 @@ export default function FavoriteDeleteTrigger(
                   className="w-1/2 rounded-lg bg-blue-500 text-white text-sm py-2 "
                   onClick={(e) => {
                     e.stopPropagation();
+                    // onDeleteFavorite();
                   }}
                 >
                   {t("button_confirm")}

@@ -1,4 +1,4 @@
-export interface SlideItem {
+export interface BannerItem {
   id: number;
   imageUrl: string;
   title: string;

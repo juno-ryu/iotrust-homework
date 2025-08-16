@@ -13,10 +13,10 @@ import { Language } from "@/shared/types/common";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { SlideItem } from "@/app/_components/client/banner/banner.type";
+import { BannerItem } from "@/shared/service/api/type/banner";
 
 interface BannerProps {
-  banners: SlideItem[];
+  banners: BannerItem[];
   lang: Language;
   options?: SwiperOptions;
 }

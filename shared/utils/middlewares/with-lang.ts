@@ -40,7 +40,6 @@ const withLangMiddleware = async ({
 
     // Language code does not exist or is not supported in the request URL
     if (lang !== extractedLang) {
-      console.log(`Redirecting to ${lang} language...`);
       const { pathname, search } = new URL(request.nextUrl);
       return NextResponse.redirect(
         new URL(`/${lang}${pathname}${search}`, request.url)

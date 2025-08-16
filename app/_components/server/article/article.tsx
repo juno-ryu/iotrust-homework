@@ -26,20 +26,22 @@ export default async function Article(props: ArticleProps) {
           <Fragment key={`favorite_${item.id}`}>
             <div className="flex w-full gap-[20px] justify-between relative pr-3">
               <BottomSheetTrigger item={item} lang={lang} />
-              <div className="relative flex justify-center shrink-0 w-[80px] h-[80px] bg-white rounded-lg overflow-hidden shadow-sm shadow-gray-50">
-                <Image
-                  src={item.icon}
-                  alt={item.id}
-                  width={60}
-                  height={60}
-                  style={{ objectFit: "contain" }}
-                  quality={90}
-                />
-              </div>
+              {item.icon && (
+                <div className="relative flex justify-center shrink-0 w-[80px] h-[80px] bg-white rounded-lg overflow-hidden shadow-sm shadow-gray-50">
+                  <Image
+                    src={item.icon}
+                    alt={item.id}
+                    width={60}
+                    height={60}
+                    style={{ objectFit: "contain" }}
+                    quality={90}
+                  />
+                </div>
+              )}
               <div className="flex flex-col justify-center mr-auto flex-1 min-w-0 ">
                 <p className="text-xl font-bold">{item.name}</p>
                 <p className="text-sm truncate max-w-full">
-                  {isFavorite ? item.url : item.description[lang]}
+                  {isFavorite ? item.url : item?.description?.[lang]}
                 </p>
               </div>
               {isFavorite && <FavoriteDeleteTrigger lang={lang} id={item.id} />}
